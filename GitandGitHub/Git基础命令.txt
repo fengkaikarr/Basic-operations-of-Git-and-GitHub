@@ -1,0 +1,77 @@
+﻿Git基础操作命令
+---------------------------------------
+
+一、将代码提交到GitHub 基础流程
+
+1. 创建ssh 将密钥添加到github上
+
+	ssh-keygen -t rsa -C "fengkaikarr@163.com"
+
+	引号里面填写邮箱  ：注册github账号使用的邮箱
+
+	执行命令之后会生成ssh文件
+
+	需要注意的是，尽量不要用记事本打开，复制其中的内容
+
+	创建github账户，将ssh文件中的内容复制进github 的ssh 设置中
+
+2. 创建一个项目目录，初始化代码仓库
+	
+		git init 
+
+3. 基础设置
+	
+	$ git config --global user.name "fengkaikarr"   
+	$ git config --global user.email "fengkaikarr@163.com"
+
+	注意：--global 代指全局，如果不写，则设置只存在于当前项目目录下
+
+4. 在github上创建代码仓库
+
+5. 在本地通过git客户端连接github仓库
+
+	git remote add origin github仓库地址
+
+	git@github.com:fengkaikarr/gittest.git
+
+	ls 查看当前目录下有哪些文件
+
+6. 添加并且将文件提交到本地git仓库
+
+	git add 文件名
+
+	git commit -m '关于本次文件提交的描述'
+
+
+7. 查看本地代码状态，检查是否有漏掉的文件
+	
+	git status
+
+8. 将本地代码仓库中的代码提交到github上
+
+	git push -u origin master  
+
+
+二、如果需要从代码仓库中拷贝下代码需要经过两个步骤
+
+1.连接仓库
+	
+		git remote add origin https://github.com/fengkaikarr/gitStudy.git
+
+
+2. 拷贝代码
+
+	git pull origin master
+
+
+三、如何下载github仓库中某个指定文件夹的内容
+
+	1. $git init
+	2. $git remote add -f origin <url>
+	3. $git config core.sparsecheckout true 
+	4. $echo “libs” >> .git/info/sparse-checkout  设置需要下载的目录存储到git本地的配置文件中
+	5. $git pull origin master
+
+
+	注释：
+		通过git操作github，在提交之前必须保证本地的仓库代码和github上仓库代码同步
